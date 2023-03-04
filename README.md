@@ -1,4 +1,4 @@
-# RecipeRoulletteJSON
+# RecipeRouletteJSON
 
 I set out to develop an application that randomly generates a meal plan based on familiar recipes. The initial plan was to utilize a database but I settled on JSON for ease of use.
 
