@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
-using RecipeRoulletteJSON.Data;
+using RecipeRouletteJSON.Data;
 using RecipeRoulletteJSON.Model;
 using System.Collections.Generic;
 using System.IO;
 
-namespace RecipeRoulletteJSON.Utility {
+namespace RecipeRoulletteJSON.Utility
+{
     class Load {
         public void Config(InternalData data) {
-            using (StreamReader reader = new StreamReader(@"c:\RecipeRoulette\config.txt")) {
+            using (StreamReader reader = new StreamReader(@"C:\RecipeRoulette\config.txt")) {
                 Dictionary<string, string> configs = new Dictionary<string, string>();
                 string line = string.Empty;
 
@@ -19,6 +20,8 @@ namespace RecipeRoulletteJSON.Utility {
                 }
 
                 data.RecipeFileLocation = configs["RECIPE_JSON"];
+                data.BackUpLocation = configs["BACKUP_LOCATION"];
+                data.SaveMultipleBackups = configs["SAVE_MULTIPLE_BACKUPS"].ToLower().Contains("true");
             }
         }
 

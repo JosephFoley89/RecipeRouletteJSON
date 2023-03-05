@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRoulletteJSON"
         mc:Ignorable="d"
-        Title="RecipeRoulette" Height="450" Width="1200">
+        Title="RecipeRoulette" Height="470" Width="1200">
     <Grid>
-        <ListBox Name="RecipeList" Margin="10,10,0,10" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12"/>
+        <ListBox Name="RecipeList" Margin="10,10,0,0" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12" Height="389" VerticalAlignment="Top"/>
         <TextBlock Name="Description" HorizontalAlignment="Left" Margin="210,10,0,0" TextWrapping="Wrap" Text="{Binding}" IsEnabled="False" VerticalAlignment="Top" Width="300" Height="105" FontSize="12" FontFamily="Arial"/>
         <ListBox Name="IngredientList" Margin="210,120,0,10" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="300" FontFamily="Arial" FontSize="12"/>
         <ListBox Name="Instructions" Margin="515,10,10,10" ItemsSource="{Binding}" FontFamily="Arial" FontSize="12"/>
+        <Button Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="10,404,0,0" VerticalAlignment="Top" Click="AddButton_Click" Width="82"/>
+        <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="120,404,0,0" VerticalAlignment="Top" Width="80" Click="DeleteButton_Click"/>
     </Grid>
 </Window>

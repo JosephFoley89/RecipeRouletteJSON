@@ -1,24 +1,17 @@
-﻿using RecipeRoulletteJSON.Data;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RecipeRouletteJSON.Data;
+using RecipeRouletteJSON.Utility;
+using RecipeRouletteJSON.View;
 using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace RecipeRoulletteJSON {
+namespace RecipeRoulletteJSON
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -34,19 +27,19 @@ namespace RecipeRoulletteJSON {
         }
         
         private void RecipeList_SelectionChanged(object sender, EventArgs e) {
-            string selection = RecipeList.SelectedItem.ToString();
+            if (RecipeList.SelectedItem != null) {
+                string selection = RecipeList.SelectedItem.ToString();
+                foreach (Recipe recipe in data.Recipes) {
+                    if (recipe.Name == selection) {
+                        selectedRecipe = recipe;
 
-            foreach (Recipe recipe in data.Recipes) {
-                if (recipe.Name == selection) {
-                    selectedRecipe = recipe;
-
-                    SetIngredientList();
-                    SetInstructions();
-                    SetDescription();
-                    break;
+                        SetIngredientList();
+                        SetInstructions();
+                        SetDescription();
+                        break;
+                    }
                 }
             }
-
         }
 
         private void SetIngredientList() {
@@ -68,6 +61,30 @@ namespace RecipeRoulletteJSON {
             Description.Text = selectedRecipe.Description;
         }
 
+        private void DeleteRecipe() {
+            if (selectedRecipe != null) {
+                data.Recipes.Remove(selectedRecipe);
+                SaveRecipes();
+            }
+        }
+
+        private void UpdateList() {
+            RecipeList.DataContext = null;
+            IngredientList.DataContext = null;
+            Description.Text = null;
+            Instructions.DataContext = null;
+            RecipeList.DataContext = data.Recipes;
+        }
+
+        private void SaveRecipes() {
+            using (StreamWriter file = File.CreateText(@data.RecipeFileLocation)) {
+                using (JsonTextWriter writer = new JsonTextWriter(file)) {
+                    JsonSerializer json = new JsonSerializer();
+                    json.Serialize(writer, data.Recipes);
+                }
+            }
+        }
+
         private InternalData InitData() {
             InternalData data = new InternalData();
             Load load = new Load();
@@ -78,11 +95,25 @@ namespace RecipeRoulletteJSON {
             return data;
         }
 
-        private void ShowOff(Recipe recipe) {
-            MessageBox.Show(
-                recipe.Description,
-                recipe.Name
-            );
+        private void BackUp() {
+            string filename = data.SaveMultipleBackups ? String.Format("recipes-backup-{0}.json", DateTime.Now.ToString("yyyy-MM-dd-HHmmss")) : "recipes-backup.json";
+            BackUp backup = new BackUp();
+            backup.Execute(data.RecipeFileLocation, data.BackUpLocation + filename);
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e) {
+            AddRecipe window = new AddRecipe();
+            window.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+            Alert alert = new Alert();
+
+            if (alert.DidUserConfirm()) {
+                BackUp();
+                DeleteRecipe();
+                UpdateList();
+            }
         }
     }
 }
