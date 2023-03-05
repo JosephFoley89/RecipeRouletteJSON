@@ -10,14 +10,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
-namespace RecipeRoulletteJSON
-{
+namespace RecipeRoulletteJSON {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
         private InternalData data;
         private Recipe selectedRecipe;
+        private UpdateJSON update = new UpdateJSON();
 
         public MainWindow() {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace RecipeRoulletteJSON
         private void DeleteRecipe() {
             if (selectedRecipe != null) {
                 data.Recipes.Remove(selectedRecipe);
-                SaveRecipes();
+                update.SaveRecipes(data.Recipes);
             }
         }
 
@@ -74,15 +74,6 @@ namespace RecipeRoulletteJSON
             Description.Text = null;
             Instructions.DataContext = null;
             RecipeList.DataContext = data.Recipes;
-        }
-
-        private void SaveRecipes() {
-            using (StreamWriter file = File.CreateText(@data.RecipeFileLocation)) {
-                using (JsonTextWriter writer = new JsonTextWriter(file)) {
-                    JsonSerializer json = new JsonSerializer();
-                    json.Serialize(writer, data.Recipes);
-                }
-            }
         }
 
         private InternalData InitData() {
@@ -95,12 +86,6 @@ namespace RecipeRoulletteJSON
             return data;
         }
 
-        private void BackUp() {
-            string filename = data.SaveMultipleBackups ? String.Format("recipes-backup-{0}.json", DateTime.Now.ToString("yyyy-MM-dd-HHmmss")) : "recipes-backup.json";
-            BackUp backup = new BackUp();
-            backup.Execute(data.RecipeFileLocation, data.BackUpLocation + filename);
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e) {
             AddRecipe window = new AddRecipe();
             window.ShowDialog();
@@ -110,7 +95,6 @@ namespace RecipeRoulletteJSON
             Alert alert = new Alert();
 
             if (alert.DidUserConfirm()) {
-                BackUp();
                 DeleteRecipe();
                 UpdateList();
             }
