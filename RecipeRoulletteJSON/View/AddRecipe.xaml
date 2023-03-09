@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
-        Title="AddRecipe" Height="520" Width="800">
+        Title="AddRecipe" Height="520" Width="800"
+        Closing="AddRecipeWindow_Closing">
     <Grid>
         <Label Content="Recipe Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Description:" HorizontalAlignment="Left" Margin="13,36,0,0" VerticalAlignment="Top" Width="79"/>

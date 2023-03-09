@@ -1,4 +1,4 @@
-﻿using RecipeRouletteJSON.Data;
+﻿using RecipeRouletteJSON.ProjectData;
 using System.Collections.Generic;
 
 namespace RecipeRoulletteJSON.Model

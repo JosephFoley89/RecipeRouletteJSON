@@ -1,52 +1,33 @@
-﻿using RecipeRouletteJSON.Data;
+﻿using RecipeRouletteJSON.ProjectData;
 using RecipeRouletteJSON.Utility;
+using RecipeRoulletteJSON;
 using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace RecipeRouletteJSON.View {
     /// <summary>
     /// Interaction logic for AddRecipe.xaml
     /// </summary>
     public partial class AddRecipe : Window {
+        private Data data;
         private List<string> types = new List<string>();
         private List<string> instructions = new List<string> ();
         private List<string> ingredients = new List<string>();
         private Dictionary<string, string> measurements = new Dictionary<string, string>();
         private Alert alert = new Alert();
-        private InternalData data;
+        private Load load = new Load();
         private UpdateJSON update = new UpdateJSON();
 
         public AddRecipe() {
             InitializeComponent();
-            data = InitData();
-
+            data = load.LoadConfigFile();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DifficulySelect.DataContext = Enum.GetValues (typeof (Difficulty));
-        }
-
-        private InternalData InitData() {
-            InternalData data = new InternalData();
-            Load load = new Load();
-
-            load.Config(data);
-            load.Recipes(data);
-
-            return data;
         }
 
         private void UpdateListBoxes() {
@@ -114,6 +95,12 @@ namespace RecipeRouletteJSON.View {
             UpdateListBoxes();
         }
 
+        private void AddRecipeWindow_Closing(object sender, EventArgs e) {
+            this.Hide();
+            MainWindow window = new MainWindow();
+            window.ShowDialog();
+        }
+
         private void SaveRecipeButton_Click(object sender, RoutedEventArgs e) {
             if (alert.DidUserConfirm()) {
                 Recipe recipe = new Recipe(
@@ -128,7 +115,7 @@ namespace RecipeRouletteJSON.View {
                 );
 
                 data.Recipes.Add(recipe);
-                update.SaveRecipes(data.Recipes);
+                update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
                 CleanInputs();
                 UpdateListBoxes();
             }

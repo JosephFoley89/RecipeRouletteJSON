@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RecipeRouletteJSON.Data;
+﻿using RecipeRouletteJSON.ProjectData;
 using RecipeRouletteJSON.Utility;
 using RecipeRouletteJSON.View;
 using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 
 namespace RecipeRoulletteJSON {
@@ -15,14 +12,15 @@ namespace RecipeRoulletteJSON {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        private InternalData data;
+        private Data data;
+        private Load load = new Load();
         private Recipe selectedRecipe;
         private UpdateJSON update = new UpdateJSON();
 
         public MainWindow() {
             InitializeComponent();
-            data = InitData();
-
+            data = load.LoadConfigFile();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             RecipeList.DataContext = data.Recipes;
         }
         
@@ -64,7 +62,7 @@ namespace RecipeRoulletteJSON {
         private void DeleteRecipe() {
             if (selectedRecipe != null) {
                 data.Recipes.Remove(selectedRecipe);
-                update.SaveRecipes(data.Recipes);
+                update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
             }
         }
 
@@ -76,18 +74,9 @@ namespace RecipeRoulletteJSON {
             RecipeList.DataContext = data.Recipes;
         }
 
-        private InternalData InitData() {
-            InternalData data = new InternalData();
-            Load load = new Load();
-
-            load.Config(data);
-            load.Recipes(data);
-
-            return data;
-        }
-
         private void AddButton_Click(object sender, RoutedEventArgs e) {
             AddRecipe window = new AddRecipe();
+            this.Close();
             window.ShowDialog();
         }
 
