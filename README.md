@@ -14,4 +14,4 @@ Planned Features:
   - A better GUI
   - Who knows what scope creep has in store!
 
-The application reads a config file that will need to be placed in a specific location: C:\RecipeRoulette\config.txt. You can specify where you want to place the recipe json file in the config file. There will likely be several json links inserted by the end of the project.
+The application reads a config file that will need to be placed in a specific location: C:\RecipeRoulette\config.json. This is created in application if the file/directory doesn't exist. The config window will request SMTP information. I chose a free smtp server for my local machine. You can find more information about them here: https://www.sendinblue.com/free-smtp-server/ 
