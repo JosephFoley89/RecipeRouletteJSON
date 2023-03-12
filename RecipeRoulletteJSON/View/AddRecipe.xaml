@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
-        Title="AddRecipe" Height="520" Width="800"
+        Title="AddRecipe" Height="480" Width="800"
         Closing="AddRecipeWindow_Closing">
     <Grid>
         <Label Content="Recipe Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -20,21 +20,21 @@
         <Label Content="Active Ingredients" HorizontalAlignment="Left" Margin="349,173,0,0" VerticalAlignment="Top" Width="162"/>
         <Label Content="Active Instructions" HorizontalAlignment="Left" Margin="525,10,0,0" VerticalAlignment="Top" Width="162"/>
         <TextBox Name="RecipeName" HorizontalAlignment="Left" Margin="97,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="Description" HorizontalAlignment="Left" Margin="99,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="105"/>
-        <TextBox Name="Cuisine" HorizontalAlignment="Left" Margin="97,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Description" HorizontalAlignment="Left" Margin="97,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" Height="105"/>
+        <ComboBox Name="CuisineSelect" HorizontalAlignment="Left" Margin="97,150,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}"/>
         <TextBox Name="Type" HorizontalAlignment="Left" Margin="97,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Name="AddTypeButton" Content="Add Type" HorizontalAlignment="Left" Margin="222,175,0,0" VerticalAlignment="Top" Width="107" Click="AddTypeButton_Click"/>
         <TextBox Name="Amount" HorizontalAlignment="Left" Margin="97,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="Ingredient" HorizontalAlignment="Left" Margin="97,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Name="AddIngredientButton" Content="Add Ingredient" HorizontalAlignment="Left" Margin="224,235,0,0" VerticalAlignment="Top" Width="107" Click="AddIngredientButton_Click"/>
-        <ComboBox Name="DifficulySelect" HorizontalAlignment="Left" Margin="99,268,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}"/>
+        <ComboBox Name="DifficulySelect" HorizontalAlignment="Left" Margin="99,268,0,0" VerticalAlignment="Top" Width="118" ItemsSource="{Binding}"/>
         <TextBox Name="Instruction" HorizontalAlignment="Left" Margin="99,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="105"/>
         <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="17,410,0,0" VerticalAlignment="Top" Width="77" Click="CancelButton_Click"/>
         <Button x:Name="SaveRecipe" Content="Save Recipe" HorizontalAlignment="Left" Margin="112,410,0,0" VerticalAlignment="Top" Width="90" Click="SaveRecipeButton_Click"/>
         <Button Name="AddInstructionButton" Content="Add Instruction" HorizontalAlignment="Left" Margin="222,410,0,0" VerticalAlignment="Top" Width="107" Click="AddInstructionButton_Click"/>
-        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,289,0" Height="132" VerticalAlignment="Top"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,289,0" Height="277" VerticalAlignment="Top"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,9"/>
+        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,0,0" Height="132" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,0,37" HorizontalAlignment="Left" Width="162"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,37"/>
 
     </Grid>
 </Window>

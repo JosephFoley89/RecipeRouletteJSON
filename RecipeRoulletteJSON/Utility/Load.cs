@@ -1,16 +1,27 @@
 ﻿using Newtonsoft.Json;
 using RecipeRouletteJSON.ProjectData;
-using RecipeRoulletteJSON.Model;
-using System.Collections.Generic;
 using System.IO;
 
-namespace RecipeRoulletteJSON.Utility
-{
+namespace RecipeRoulletteJSON.Utility {
     class Load {
         public Data LoadConfigFile() {
-            using (StreamReader file = new StreamReader(@"C:\RecipeRoulette\config.json")) {
-                string json = file.ReadToEnd();
-                Data data = JsonConvert.DeserializeObject<Data>(json);
+            if (Directory.Exists(@"C:\RecipeRoulette")) {
+                if (File.Exists(@"C:\RecipeRoulette\config.json")) {
+                    using (StreamReader file = new StreamReader(@"C:\RecipeRoulette\config.json")) {
+                        string json = file.ReadToEnd();
+                        Data data = JsonConvert.DeserializeObject<Data>(json);
+                        return data;
+                    }
+                } else {
+                    //Empty data object used to allow the file to be created.
+                    Data data = new Data();
+                    return data;
+                }
+            } else {
+                Directory.CreateDirectory(@"C:\RecipeRoulette");
+                Directory.CreateDirectory(@"C:\RecipeRoulette\BackUps");
+
+                Data data = new Data();
                 return data;
             }
         }

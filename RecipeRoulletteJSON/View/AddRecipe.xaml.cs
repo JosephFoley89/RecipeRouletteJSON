@@ -28,6 +28,7 @@ namespace RecipeRouletteJSON.View {
             data = load.LoadConfigFile();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DifficulySelect.DataContext = Enum.GetValues (typeof (Difficulty));
+            CuisineSelect.DataContext = Enum.GetValues (typeof (Cuisine));
         }
 
         private void UpdateListBoxes() {
@@ -43,7 +44,6 @@ namespace RecipeRouletteJSON.View {
         private void CleanInputs() {
             RecipeName.Text = string.Empty;
             Description.Text = string.Empty;
-            Cuisine.Text = string.Empty;
             Type.Text = string.Empty;
             Ingredient.Text = string.Empty;
             Amount.Text = string.Empty;
@@ -67,7 +67,7 @@ namespace RecipeRouletteJSON.View {
 
             return formattedIngredients;
         }
-
+        //TODO: Form validation.
         private void AddInstructionButton_Click(object sender, RoutedEventArgs e) {
             instructions.Add(Instruction.Text);
             Instruction.Text = string.Empty;
@@ -107,7 +107,7 @@ namespace RecipeRouletteJSON.View {
                     data.Recipes.Count + 1,
                     RecipeName.Text,
                     Description.Text,
-                    Cuisine.Text,
+                    (Cuisine)CuisineSelect.SelectedValue,
                     types,
                     measurements,
                     instructions,

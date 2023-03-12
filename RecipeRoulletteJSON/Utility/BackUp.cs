@@ -3,7 +3,9 @@
 namespace RecipeRouletteJSON.Utility {
     internal class BackUp {
         public void Execute(string source, string destination) {
-            File.Copy(source, destination, true);
+            if (File.Exists(source)) {
+                File.Copy(source, destination, true);
+            }
         }
     }
 }

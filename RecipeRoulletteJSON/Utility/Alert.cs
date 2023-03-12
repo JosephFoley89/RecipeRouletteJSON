@@ -15,5 +15,13 @@ namespace RecipeRouletteJSON.Utility {
                 MessageBoxButton.YesNo
             ) == MessageBoxResult.Yes;
         }
+
+        public void DisplayError(string message, string title) {
+            MessageBox.Show(
+                message,
+                title,
+                MessageBoxButton.OK
+            );
+        }
     }
 }

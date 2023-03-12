@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RecipeRouletteJSON.ProjectData {
-    internal enum Difficulty {
-        Easy,
-        Moderate,
-        Hard
+    internal enum FoodGroup {
+        Dairy,
+        Fruit,
+        Grain,
+        Protein,
+        Vegetable
     }
 }

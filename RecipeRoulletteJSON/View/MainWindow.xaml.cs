@@ -1,4 +1,5 @@
-﻿using RecipeRouletteJSON.ProjectData;
+﻿using RecipeRouletteJSON.Model;
+using RecipeRouletteJSON.ProjectData;
 using RecipeRouletteJSON.Utility;
 using RecipeRouletteJSON.View;
 using RecipeRoulletteJSON.Model;
@@ -16,10 +17,19 @@ namespace RecipeRoulletteJSON {
         private Load load = new Load();
         private Recipe selectedRecipe;
         private UpdateJSON update = new UpdateJSON();
+        private GenerateMealPlan plan = new GenerateMealPlan();
+        private GenerateGroceryList groceryList = new GenerateGroceryList();
 
         public MainWindow() {
             InitializeComponent();
             data = load.LoadConfigFile();
+
+            if (data.Recipes == null) {
+                Config config = new Config();
+                this.Close();
+                config.Show();
+            }
+
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             RecipeList.DataContext = data.Recipes;
         }
@@ -87,6 +97,13 @@ namespace RecipeRoulletteJSON {
                 DeleteRecipe();
                 UpdateList();
             }
+        }
+
+        //TODO: Fully implement the meal plan functionality
+        private void GeneratePlanButton_Click(object sender, RoutedEventArgs e) {
+            List<Recipe> recipes = plan.Generate();
+            update.Test(recipes, @"C:\temp\meal.json");
+            update.Test(groceryList.Generate(recipes), @"C:\temp\grocery_list.json");
         }
     }
 }

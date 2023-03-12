@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecipeRouletteJSON.Utility {
-    internal class GenerateFile {
+namespace RecipeRouletteJSON.ProjectData {
+    internal enum Course {
+        Appetizer,
+        Main,
+        Dessert
     }
 }
