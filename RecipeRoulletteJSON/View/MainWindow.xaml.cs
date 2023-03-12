@@ -18,7 +18,6 @@ namespace RecipeRoulletteJSON {
         private Recipe selectedRecipe;
         private UpdateJSON update = new UpdateJSON();
         private GenerateMealPlan plan = new GenerateMealPlan();
-        private GenerateGroceryList groceryList = new GenerateGroceryList();
 
         public MainWindow() {
             InitializeComponent();
@@ -102,8 +101,13 @@ namespace RecipeRoulletteJSON {
         //TODO: Fully implement the meal plan functionality
         private void GeneratePlanButton_Click(object sender, RoutedEventArgs e) {
             List<Recipe> recipes = plan.Generate();
-            update.Test(recipes, @"C:\temp\meal.json");
-            update.Test(groceryList.Generate(recipes), @"C:\temp\grocery_list.json");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            if (selectedRecipe != null) {
+                Notification notification = new Notification();
+                notification.SendInstructions(selectedRecipe);
+            }
         }
     }
 }

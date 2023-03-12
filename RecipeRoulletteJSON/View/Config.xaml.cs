@@ -37,6 +37,8 @@ namespace RecipeRouletteJSON.View {
             data.Host = Server.Text;
             data.Username = User.Text;
             data.SMTPKey = Key.Text;
+            data.ToEmail = ToEmail.Text;
+
             try {
                 data.Port = Convert.ToInt16(Port.Text);
             } catch (Exception ex) {

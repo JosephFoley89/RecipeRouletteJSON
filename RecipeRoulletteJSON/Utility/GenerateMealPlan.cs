@@ -9,6 +9,7 @@ namespace RecipeRouletteJSON.Utility {
         public List<Recipe> Generate() {
             Load load = new Load();
             Data data = load.LoadConfigFile();
+            UpdateJSON update = new UpdateJSON();
             Notification notification = new Notification();
             List<Recipe> mealPlan = new List<Recipe>();
 
@@ -18,7 +19,10 @@ namespace RecipeRouletteJSON.Utility {
                 mealPlan.Add(data.Recipes[index]);
             }
 
+            data.MealPlan = mealPlan;
             notification.SendShoppingList(mealPlan);
+
+            update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
 
             return mealPlan;
         }

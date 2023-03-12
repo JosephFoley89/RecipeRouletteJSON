@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRoulletteJSON"
         mc:Ignorable="d"
-        Title="RecipeRoulette" Height="475" Width="1200">
+        Title="RecipeRoulette" Height="500" Width="1200">
     <Grid>
-        <ListBox Name="RecipeList" Margin="10,10,0,38" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12" Grid.ColumnSpan="2"/>
+        <ListBox Name="RecipeList" Margin="10,10,0,0" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12" Height="411" VerticalAlignment="Top"/>
         <TextBlock Name="Description" HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="{Binding}" IsEnabled="False" VerticalAlignment="Top" Width="293" Height="105" FontSize="12" FontFamily="Arial"/>
-        <ListBox Name="IngredientList" Margin="213,120,0,38" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="293" FontFamily="Arial" FontSize="12"/>
+        <ListBox Name="IngredientList" Margin="213,120,0,0" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="293" FontFamily="Arial" FontSize="12" Height="301" VerticalAlignment="Top"/>
         <ListBox Name="Instructions" Margin="521,10,10,38" ItemsSource="{Binding}" FontFamily="Arial" FontSize="12"/>
-        <Button Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="10,404,0,0" Click="AddButton_Click" Width="82" Height="20" VerticalAlignment="Top"/>
-        <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="120,404,0,0" Width="80" Click="DeleteButton_Click" Height="20" VerticalAlignment="Top"/>
-        <Button Name="GeneratePlanButton" Content="GeneratePlan" HorizontalAlignment="Left" Margin="213,404,0,0" Width="80" Click="GeneratePlanButton_Click" Height="20" VerticalAlignment="Top"/>
+        <Button Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="10,429,0,0" Click="AddButton_Click" Width="82" Height="20" VerticalAlignment="Top"/>
+        <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="120,429,0,0" Width="80" Click="DeleteButton_Click" Height="20" VerticalAlignment="Top"/>
+        <Button Name="GeneratePlanButton" Content="GeneratePlan" HorizontalAlignment="Left" Margin="213,429,0,0" Width="80" Click="GeneratePlanButton_Click" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Email Instrucitons" HorizontalAlignment="Left" Margin="409,429,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click"/>
     </Grid>
 </Window>

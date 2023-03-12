@@ -1,4 +1,5 @@
-﻿using RecipeRouletteJSON.ProjectData;
+﻿using RecipeRouletteJSON.Model;
+using RecipeRouletteJSON.ProjectData;
 using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ namespace RecipeRouletteJSON.Utility {
     internal class GenerateHTML {
         public string GenerateShoppingList(List<Recipe> recipes) {
             string html = "<html>";
-
             html += "<style>"
                 + "td { border-bottom: 2px solid #fefefe; }"
+                + "table { width: 100%; }"
                 + "</style>";
 
             foreach (Recipe recipe in recipes) {
@@ -25,11 +26,21 @@ namespace RecipeRouletteJSON.Utility {
             return html;
         }
 
-        public string GenerateInstructions(List<Recipe> recipes) {
+        public string GenerateInstructions(Recipe recipe) {
+            int i = 1;
             string html = "<html>";
+            html += "<style>"
+                + "td { margin-bottom: 1em; }"
+                + "table { width: 100%; }"
+                + "</style>";
+            html += string.Format("<table><th colspan='3'>{0}</td></th>", recipe.Name);
 
+            foreach (string instruction in recipe.Directions) {
+                html += string.Format("<tr><td>{0}</td><td>:</td><td>{1}</td></tr>", i.ToString(), instruction);
+                i++;
+            }
 
-            html += "</html>";
+            html += "</table></html>";
             return html;
         }
     }

@@ -24,26 +24,5 @@ namespace RecipeRouletteJSON.Utility {
                 }
             }
         }
-
-        //TODO: Replace these functions with permanent solutions.
-        public void Test(List<Recipe> data, string source) {
-            //BackUp(source, destination, saveMultiple);
-            using (StreamWriter file = File.CreateText(@source)) {
-                using (JsonTextWriter writer = new JsonTextWriter(file)) {
-                    JsonSerializer json = new JsonSerializer();
-                    json.Serialize(writer, data);
-                }
-            }
-        }
-
-        public void Test(Dictionary<string, string> data, string source) {
-            //BackUp(source, destination, saveMultiple);
-            using (StreamWriter file = File.CreateText(@source)) {
-                using (JsonTextWriter writer = new JsonTextWriter(file)) {
-                    JsonSerializer json = new JsonSerializer();
-                    json.Serialize(writer, data);
-                }
-            }
-        }
     }
 }

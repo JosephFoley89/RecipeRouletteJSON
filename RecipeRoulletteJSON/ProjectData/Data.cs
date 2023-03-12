@@ -9,7 +9,9 @@ namespace RecipeRouletteJSON.ProjectData {
         public string Username { get; set; }
         public string SMTPKey { get; set; }
         public int Port { get; set; }
+        public string ToEmail { get; set; }
         public bool SaveMultipleBackups { get; set; }
         public List<Recipe> Recipes { get; set; }
+        public List<Recipe> MealPlan { get; set; }
     }
 }
