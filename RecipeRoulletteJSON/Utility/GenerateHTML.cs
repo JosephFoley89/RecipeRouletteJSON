@@ -15,11 +15,11 @@ namespace RecipeRouletteJSON.Utility {
                 + "</style>";
 
             foreach (Recipe recipe in recipes) {
-                html += string.Format("<table><th colspan='3'>{0}</td></th>",  recipe.Name);
+                html += string.Format("<br/><table><th colspan='3'>{0}</td></th>",  recipe.Name);
                 foreach (string ingredient in recipe.Measurements.Keys) {
                     html += string.Format("<tr><td>{0}</td><td>:</td><td>{1}</td></tr>", ingredient, recipe.Measurements[ingredient]);
                 }
-                html += "</table>";
+                html += "</table><br/>";
             }
 
             html += "</html>";
@@ -30,7 +30,6 @@ namespace RecipeRouletteJSON.Utility {
             int i = 1;
             string html = "<html>";
             html += "<style>"
-                + "td { margin-bottom: 1em; }"
                 + "table { width: 100%; }"
                 + "</style>";
             html += string.Format("<table><th colspan='3'>{0}</td></th>", recipe.Name);

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace RecipeRouletteJSON.View {
     /// <summary>
@@ -49,6 +50,7 @@ namespace RecipeRouletteJSON.View {
             Amount.Text = string.Empty;
             Instruction.Text = string.Empty;
             DifficulySelect.SelectedIndex = 0;
+            CuisineSelect.SelectedIndex = 0;
             types.Clear();
             instructions.Clear();
             measurements.Clear();
@@ -117,6 +119,31 @@ namespace RecipeRouletteJSON.View {
                 data.Recipes.Add(recipe);
                 update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
                 CleanInputs();
+                UpdateListBoxes();
+            }
+        }
+
+        private void Instruction_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                instructions.Add(Instruction.Text);
+                Instruction.Text = string.Empty;
+                UpdateListBoxes();
+            }
+        }
+
+        private void Type_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                types.Add(Type.Text);
+                Type.Text = string.Empty;
+                UpdateListBoxes();
+            }
+        }
+
+        private void Ingredient_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                measurements.Add(Ingredient.Text, Amount.Text);
+                Ingredient.Text = string.Empty;
+                Amount.Text = string.Empty;
                 UpdateListBoxes();
             }
         }

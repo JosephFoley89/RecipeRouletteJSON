@@ -13,7 +13,6 @@ namespace RecipeRoulletteJSON.Utility {
                         return data;
                     }
                 } else {
-                    //Empty data object used to allow the file to be created.
                     Data data = new Data();
                     return data;
                 }

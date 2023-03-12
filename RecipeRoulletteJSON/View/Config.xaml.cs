@@ -2,8 +2,10 @@
 using RecipeRouletteJSON.Utility;
 using RecipeRoulletteJSON;
 using RecipeRoulletteJSON.Model;
+using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +24,23 @@ namespace RecipeRouletteJSON.View {
     /// </summary>
     public partial class Config : Window {
         private UpdateJSON update = new UpdateJSON();
+        private Load load = new Load();
+        private Data data;
+        
 
         public Config() {
             InitializeComponent();
+            if (Directory.Exists(@"C:\RecipeRoulette")) {
+                data = load.LoadConfigFile();
+                MultipleCheckBox.IsChecked = data.SaveMultipleBackups;
+                Server.Text = data.Host;
+                User.Text = data.Username;
+                this.Key.Text = data.SMTPKey;
+                Port.Text = data.Port.ToString();
+                ToEmail.Text = data.ToEmail;
+            }
+
+
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 

@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
-        Title="Config" Height="270" Width="362">
+        Title="Config" Height="270" Width="362" Background="#FF274472" FontFamily="Arial">
     <Grid>
-        <Label Content="Multiple Backups:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.519,0.935"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label Content="SMTP Server:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label Content="SMTP Key:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label Content="Port:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label Content="Send To Email:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="111"/>
+        <Label Content="Multiple Backups:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.519,0.935" Foreground="White"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="111" Foreground="White"/>
+        <Label Content="SMTP Server:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="111" Foreground="White"/>
+        <Label Content="SMTP Key:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="111" Foreground="White"/>
+        <Label Content="Port:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="111" Foreground="White"/>
+        <Label Content="Send To Email:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="111" Foreground="White"/>
         <CheckBox Name="MultipleCheckBox" Content="" HorizontalAlignment="Left" Margin="138,16,0,0" VerticalAlignment="Top"/>
         <TextBox Name="Server" HorizontalAlignment="Left" Margin="138,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
         <TextBox Name="User" HorizontalAlignment="Left" Margin="138,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="187"/>
         <TextBox Name="Key" HorizontalAlignment="Left" Margin="139,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
         <TextBox Name="Port" HorizontalAlignment="Left" Margin="139,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
         <TextBox Name="ToEmail"  HorizontalAlignment="Left" Margin="139,169,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186"/>
-        <Button Content="Create Config" HorizontalAlignment="Left" Margin="248,196,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Submit" HorizontalAlignment="Left" Margin="268,192,0,0" VerticalAlignment="Top" Click="Button_Click" Width="56"/>
     </Grid>
 </Window>

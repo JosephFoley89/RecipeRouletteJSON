@@ -6,6 +6,7 @@ using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows;
 
 namespace RecipeRoulletteJSON {
@@ -18,9 +19,11 @@ namespace RecipeRoulletteJSON {
         private Recipe selectedRecipe;
         private UpdateJSON update = new UpdateJSON();
         private GenerateMealPlan plan = new GenerateMealPlan();
+        private CleanBackUp clean = new CleanBackUp();
 
         public MainWindow() {
             InitializeComponent();
+            clean.Execute();
             data = load.LoadConfigFile();
 
             if (data.Recipes == null) {
@@ -75,12 +78,12 @@ namespace RecipeRoulletteJSON {
             }
         }
 
-        private void UpdateList() {
+        private void UpdateList(List<Recipe> recipes) {
             RecipeList.DataContext = null;
             IngredientList.DataContext = null;
             Description.Text = null;
             Instructions.DataContext = null;
-            RecipeList.DataContext = data.Recipes;
+            RecipeList.DataContext = recipes;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e) {
@@ -94,7 +97,7 @@ namespace RecipeRoulletteJSON {
 
             if (alert.DidUserConfirm()) {
                 DeleteRecipe();
-                UpdateList();
+                UpdateList(data.Recipes);
             }
         }
 
@@ -105,9 +108,29 @@ namespace RecipeRoulletteJSON {
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             if (selectedRecipe != null) {
-                Notification notification = new Notification();
+                Notification notification = new Notification(data);
                 notification.SendInstructions(selectedRecipe);
+            } else {
+                Alert alert = new Alert();
+                alert.DisplayError("Please select a recipe to have emailed to you.", "No Recipe Selected");
             }
+        }
+
+        private void Searchbox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+            List<Recipe> recipes = new List<Recipe>();
+
+            foreach(Recipe recipe in data.Recipes) {
+                if (recipe.Name.ToLower().Contains(Searchbox.Text.ToLower())) {
+                    recipes.Add(recipe);
+                }
+            }
+
+            UpdateList(recipes);
+        }
+
+        private void ConfigButton_Click(object sender, RoutedEventArgs e) {
+            Config config = new Config();
+            config.Show();
         }
     }
 }

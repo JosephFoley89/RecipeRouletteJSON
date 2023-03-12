@@ -10,7 +10,7 @@ namespace RecipeRouletteJSON.Utility {
             Load load = new Load();
             Data data = load.LoadConfigFile();
             UpdateJSON update = new UpdateJSON();
-            Notification notification = new Notification();
+            Notification notification = new Notification(data);
             List<Recipe> mealPlan = new List<Recipe>();
 
             for (int i = 0; i < 7; i++) {
