@@ -1,6 +1,0 @@
-#This is the config file where file locations are held.
-#Each line that starts with a '#' is ignored
-#The lines are split on "::" and while the order is not
-#important the key is.
-#
-RECIPE_JSON::C:\RecipeRoulette\recipes.json
