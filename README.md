@@ -5,11 +5,13 @@ I set out to develop an application that randomly generates a meal plan based on
 Current Features:
   - The ability to select from two pre-existing recipes.
   - Once a recipe is selected, a description of the recipe, its required ingredients, and the instructions on how to create the dish are populated.
+  - The ability to add and delete recipes
+  - Email a recipe's instructions
+  - Email a grocery list based on a randomly generated meal plan.
 
 Planned Features:
-  - The ability to add, edit, and remove recipes.
-  - The ability to randomly generate a meal plan.
-      - The user will be able to select by filtering cuisines, food types (i.e. soups, cakes, pizzas etc.), difficulty, things you already have the ingredients for, etc. at a later date.
+  - The ability to edit recipes
+  - The user will be able to select by filtering cuisines, food types (i.e. soups, cakes, pizzas etc.), difficulty, things you already have the ingredients for, etc. at a later date.
   - The ability to create an inventory of your current ingredients also housed in json
   - A better GUI
   - Who knows what scope creep has in store!
