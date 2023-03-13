@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
         Closing="MealPlan_Closing"
-        Title="MealPlan" Height="475" Width="600">
+        Title="MealPlan" Height="475" Width="600" Background="#FF274472" FontFamily="Arial">
     <Grid>
-        <Label Content="Meal Plan" HorizontalAlignment="Left" Margin="289,14,0,0" VerticalAlignment="Top" Width="263"/>
-        <Label Content="Available Recipes" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="263"/>
-        <ListBox Name="AvailableRecipesList" ItemsSource="{Binding}" Margin="10,40,327,10" KeyDown="AvailableRecipesList_KeyDown"/>
-        <ListBox x:Name="MealPlanList" ItemsSource="{Binding}" Margin="300,40,10,80" KeyDown="MealPlanList_KeyDown"/>
+        <Label Content="Meal Plan" HorizontalAlignment="Left" Margin="289,14,0,0" VerticalAlignment="Top" Width="263" Foreground="White"/>
+        <Label Content="Available Recipes" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="263" Foreground="White"/>
+        <ListBox Name="AvailableRecipesList" ItemsSource="{Binding}" Margin="10,40,327,10" KeyDown="AvailableRecipesList_KeyDown" Background="#FF274472" Foreground="White" BorderBrush="#00ABADB3"/>
+        <ListBox x:Name="MealPlanList" ItemsSource="{Binding}" Margin="300,40,10,80" KeyDown="MealPlanList_KeyDown" Background="#FF274472" Foreground="White" BorderBrush="#00ABADB3"/>
         <Button Name="SavePlanButton" Content="Save Meal Plan" HorizontalAlignment="Left" Margin="300,359,0,0" Width="100" Click="SavePlanButton_Click" Height="20" VerticalAlignment="Top"/>
         <Button Name="EmailIngredients" Content="Email Ingredients" Margin="474,359,0,0" VerticalAlignment="Top" Click="EmailIngredientsButton_Click" HorizontalAlignment="Left" Width="100"/>
         <Button Name="EmailInstructions" Content="Email Instructions" HorizontalAlignment="Left" Margin="300,392,0,0" VerticalAlignment="Top" Width="100" Click="EmailInstructions_Click"/>

@@ -28,13 +28,13 @@ namespace RecipeRouletteJSON.Utility {
 
         public void SendShoppingList(List<Recipe> recipes) {
             message.Body = html.GenerateShoppingList(recipes);
-            message.Subject = "RR: Grocery List";
+            message.Subject = "Grocery List";
             client.Send(message);
         }
 
         public void SendInstructions(Recipe recipe) {
             data = load.LoadConfigFile();
-            message.Subject = String.Format("RR: {0} Instructions", recipe.Name);
+            message.Subject = String.Format("{0} Instructions", recipe.Name);
             message.Body = html.GenerateInstructions(recipe);
             client.Send(message);
         }
