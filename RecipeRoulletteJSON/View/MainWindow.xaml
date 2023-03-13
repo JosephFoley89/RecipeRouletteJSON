@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRoulletteJSON"
         mc:Ignorable="d"
-        Title="RecipeRoulette" Height="495" Width="1200" Background="#FF274472" FontFamily="Arial">
+        Title="RecipeRoulette" Height="495" Width="1200" Background="#FF0D1117" FontFamily="Arial">
     <Grid>
-        <Label Content="Search" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="65" Foreground="White"/>
-        <TextBox x:Name="Searchbox" HorizontalAlignment="Left" Margin="80,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Searchbox_TextChanged"/>
-        <ListBox Name="RecipeList" Margin="10,49,0,0" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12" Height="373" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#FF274472" Foreground="#FFF9F9F9"/>
-        <TextBlock Name="Description" HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="{Binding}" IsEnabled="False" VerticalAlignment="Top" Width="293" Height="105" FontSize="12" FontFamily="Arial" Foreground="White"/>
-        <ListBox Name="IngredientList" Margin="213,120,0,0" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="293" FontFamily="Arial" FontSize="12" Height="301" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#FF274472" Foreground="#FFF9F9F9"/>
-        <ListBox Name="Instructions" Margin="521,10,10,0" ItemsSource="{Binding}" FontFamily="Arial" FontSize="12" Height="411" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#FF274472" Foreground="#FFF9F9F9"/>
+        <Label Content="Search" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="65" Background="#00C9D1D9" Foreground="#FFC9D1D9"/>
+        <TextBox x:Name="Searchbox" HorizontalAlignment="Left" Margin="80,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Searchbox_TextChanged" Background="White" Foreground="#FF0B2844" SelectionTextBrush="#FFC9D1D9" BorderBrush="#00ABADB3"/>
+        <ListBox Name="RecipeList" Margin="10,49,0,0" HorizontalAlignment="Left" Width="190" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectionChanged="RecipeList_SelectionChanged" FontFamily="Arial" FontSize="12" Height="373" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#00C9D1D9" Foreground="#FFC9D1D9"/>
+        <TextBlock Name="Description" HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="{Binding}" IsEnabled="False" VerticalAlignment="Top" Width="293" Height="105" FontSize="12" FontFamily="Arial" Foreground="#FFC9D1D9"/>
+        <ListBox Name="IngredientList" Margin="213,120,0,0" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="293" FontFamily="Arial" FontSize="12" Height="301" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#00274472" Foreground="#FFC9D1D9"/>
+        <ListBox Name="Instructions" Margin="521,10,10,0" ItemsSource="{Binding}" FontFamily="Arial" FontSize="12" Height="411" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#00274472" Foreground="#FFC9D1D9"/>
         <Button Name="AddButton" Content="Add or Edit" HorizontalAlignment="Left" Margin="10,429,0,0" Click="AddButton_Click" Width="95" Height="20" VerticalAlignment="Top"/>
         <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="118,429,0,0" Width="82" Click="DeleteButton_Click" Height="20" VerticalAlignment="Top"/>
-        <Button Name="GeneratePlanButton" Content="Generate Random Plan" HorizontalAlignment="Left" Margin="600,429,0,0" Width="147" Click="GeneratePlanButton_Click" Height="20" VerticalAlignment="Top"/>
-        <Button Content="Email Instrucitons" Margin="1029,429,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click" HorizontalAlignment="Left" Width="141"/>
-        <Button Content="Config" HorizontalAlignment="Left" Margin="521,429,0,0" VerticalAlignment="Top" Click="ConfigButton_Click" Width="64" Height="20"/>
-        <Button Name="MealPlanButton" Content="Manual Meal Plan" HorizontalAlignment="Left" Margin="762,429,0,0" VerticalAlignment="Top" Height="20" Width="125" Click="MealPlanButton_Click"/>
+        <Button Content="Email Instrucitons" Margin="213,429,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click" HorizontalAlignment="Left" Width="142"/>
+        <Button Content="Config" HorizontalAlignment="Left" Margin="463,429,0,0" VerticalAlignment="Top" Click="ConfigButton_Click" Width="64" Height="20"/>
+        <Button Name="MealPlanButton" Content="Meal Plan" HorizontalAlignment="Left" Margin="369,429,0,0" VerticalAlignment="Top" Height="20" Width="80" Click="MealPlanButton_Click"/>
     </Grid>
 </Window>

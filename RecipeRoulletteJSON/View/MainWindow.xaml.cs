@@ -54,6 +54,9 @@ namespace RecipeRoulletteJSON {
                         break;
                     }
                 }
+            } else {
+                data.SelectedRecipe = null;
+                update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
             }
         }
 
@@ -107,10 +110,6 @@ namespace RecipeRoulletteJSON {
             } else {
                 alert.DisplayError("Please select a recipe to remove.", "No Recipe Selected");
             }
-        }
-
-        private void GeneratePlanButton_Click(object sender, RoutedEventArgs e) {
-            List<Recipe> recipes = plan.Generate();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {

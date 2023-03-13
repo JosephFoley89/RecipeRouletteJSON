@@ -6,6 +6,7 @@ using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,6 +21,7 @@ namespace RecipeRouletteJSON.View {
         private Alert alert = new Alert();
         private bool hasSaved = true;
         private UpdateJSON update = new UpdateJSON();
+        private GenerateMealPlan plan = new GenerateMealPlan();
 
         public MealPlan() {
             InitializeComponent();
@@ -55,15 +57,15 @@ namespace RecipeRouletteJSON.View {
         }
 
         private void EmailInstructions_Click(object sender, RoutedEventArgs e) {
-            foreach(Recipe recipe in data.MealPlan) {
-                if (recipe.Name == MealPlanList.SelectedItem.ToString()) {
-                    notification.SendInstructions(recipe);
-                    break;
-                }
+            if (MealPlanList.SelectedItem != null) {
+                notification.SendInstructions((Recipe)MealPlanList.SelectedItem);
+            } else {
+                alert.DisplayError("No recipe selected. Please select a recipe to have emailed to you.", "Please Select a Recipe");
             }
         }
         
         private void UpdateList() {
+            data = load.LoadConfigFile();
             MealPlanList.DataContext = null;
             MealPlanList.DataContext = data.MealPlan;
         }
@@ -74,7 +76,6 @@ namespace RecipeRouletteJSON.View {
                 hasSaved = false;
                 UpdateList();
             }
-
         }
 
         private void AvailableRecipesList_KeyDown(object sender, KeyEventArgs e) {
@@ -103,6 +104,11 @@ namespace RecipeRouletteJSON.View {
                 MainWindow window = new MainWindow();
                 window.ShowDialog();
             }
+        }
+
+        private void GeneratePlanButton_Click(object sender, RoutedEventArgs e) {
+            plan.Generate();
+            UpdateList();
         }
     }
 }

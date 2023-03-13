@@ -171,8 +171,14 @@ namespace RecipeRouletteJSON.View {
 
         private void Instruction_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                instructions.Add(Instruction.Text);
-                Instruction.Text = string.Empty;
+                if (ActiveInstructions.SelectedItem == null) {
+                    instructions.Add(Instruction.Text);
+                    Instruction.Text = string.Empty;
+                } else {
+                    int index = ActiveInstructions.SelectedIndex;
+                    instructions.Remove(ActiveInstructions.SelectedItem.ToString());
+                    instructions.Insert(index, Instruction.Text);
+                }
                 UpdateListBoxes();
             }
         }
@@ -273,6 +279,12 @@ namespace RecipeRouletteJSON.View {
 
             UpdateListBoxes();
             ActiveTypes.SelectedIndex = index;
+        }
+
+        private void ActiveInstructions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (ActiveInstructions.SelectedItem != null) {
+                Instruction.Text = ActiveInstructions.SelectedItem.ToString();
+            }
         }
     }
 }

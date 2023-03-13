@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
         Title="AddRecipe" Height="480" Width="800"
-        Closing="AddRecipeWindow_Closing" Background="#FF274472" FontFamily="Arial">
+        Closing="AddRecipeWindow_Closing" Background="#FF0D1117" FontFamily="Arial">
     <Grid>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Foreground="White" Width="74"/>
-        <Label Content="Description:" HorizontalAlignment="Left" Margin="18,36,0,0" VerticalAlignment="Top" Width="78" Foreground="White"/>
-        <Label Content="Cuisine:" HorizontalAlignment="Left" Margin="17,146,0,0" VerticalAlignment="Top" Width="82" Foreground="White"/>
-        <Label Content="Types:" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.369,0.442" Width="80" Foreground="White"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Foreground="#FFC9D1D9" Width="74"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="18,36,0,0" VerticalAlignment="Top" Width="78" Foreground="#FFC9D1D9"/>
+        <Label Content="Cuisine:" HorizontalAlignment="Left" Margin="17,146,0,0" VerticalAlignment="Top" Width="82" Foreground="#FFC9D1D9"/>
+        <Label Content="Types:" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.369,0.442" Width="80" Foreground="#FFC9D1D9"/>
         <Label Content="Ingredient:" HorizontalAlignment="Left" Margin="157,198,0,0" VerticalAlignment="Top" Width="77" Foreground="White"/>
-        <Label Content="Amount:" HorizontalAlignment="Left" Margin="17,199,0,0" VerticalAlignment="Top" Width="77" Foreground="White"/>
-        <Label Content="Difficulty:" HorizontalAlignment="Left" Margin="18,232,0,0" VerticalAlignment="Top" Width="76" Foreground="White"/>
-        <Label Content="Instruction:" HorizontalAlignment="Left" Margin="18,261,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.43,-0.229" Foreground="White"/>
-        <Label Content="Active Types" HorizontalAlignment="Left" Margin="349,14,0,0" VerticalAlignment="Top" Width="162" Foreground="White"/>
-        <Label Content="Active Ingredients" HorizontalAlignment="Left" Margin="349,173,0,0" VerticalAlignment="Top" Width="162" Foreground="White"/>
-        <Label Content="Active Instructions" HorizontalAlignment="Left" Margin="525,10,0,0" VerticalAlignment="Top" Width="162" Foreground="White"/>
+        <Label Content="Amount:" HorizontalAlignment="Left" Margin="17,199,0,0" VerticalAlignment="Top" Width="77" Foreground="#FFC9D1D9"/>
+        <Label Content="Difficulty:" HorizontalAlignment="Left" Margin="18,232,0,0" VerticalAlignment="Top" Width="76" Foreground="#FFC9D1D9"/>
+        <Label Content="Instruction:" HorizontalAlignment="Left" Margin="18,261,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.43,-0.229" Foreground="#FFC9D1D9"/>
+        <Label Content="Active Types" HorizontalAlignment="Left" Margin="349,14,0,0" VerticalAlignment="Top" Width="162" Foreground="#FFC9D1D9"/>
+        <Label Content="Active Ingredients" HorizontalAlignment="Left" Margin="349,173,0,0" VerticalAlignment="Top" Width="162" Foreground="#FFC9D1D9"/>
+        <Label Content="Active Instructions" HorizontalAlignment="Left" Margin="525,10,0,0" VerticalAlignment="Top" Width="162" Foreground="#FFC9D1D9"/>
         <TextBox Name="RecipeName" HorizontalAlignment="Left" Margin="97,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="232"/>
         <TextBox Name="Description" HorizontalAlignment="Left" Margin="97,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" Height="105"/>
         <ComboBox Name="CuisineSelect" HorizontalAlignment="Left" Margin="97,150,0,0" VerticalAlignment="Top" Width="232" ItemsSource="{Binding}"/>
@@ -32,8 +32,8 @@
         <Button Name="AddInstructionButton" Content="Add Instruction" HorizontalAlignment="Left" Margin="214,267,0,0" VerticalAlignment="Top" Width="115" Click="AddInstructionButton_Click"/>
         <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="17,410,0,0" VerticalAlignment="Top" Width="77" Click="CancelButton_Click"/>
         <Button x:Name="SaveRecipe" Content="Save Recipe" HorizontalAlignment="Left" Margin="112,410,0,0" VerticalAlignment="Top" Width="90" Click="SaveRecipeButton_Click"/>
-        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,0,0" Height="132" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="TypeList_KeyDown"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,0,37" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="IngredientList_KeyDown" IsManipulationEnabled="True"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,37" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="InstructionsList_KeyDown" IsManipulationEnabled="True"/>
+        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,0,0" Height="132" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#00274472" KeyDown="TypeList_KeyDown"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,0,37" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#00274472" KeyDown="IngredientList_KeyDown" IsManipulationEnabled="True"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,37" BorderBrush="#00ABADB3" Foreground="White" Background="#00274472" KeyDown="InstructionsList_KeyDown" IsManipulationEnabled="True" SelectionChanged="ActiveInstructions_SelectionChanged"/>
     </Grid>
 </Window>
