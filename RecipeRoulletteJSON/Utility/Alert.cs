@@ -7,10 +7,9 @@ using System.Windows;
 
 namespace RecipeRouletteJSON.Utility {
     internal class Alert {
-        public bool DidUserConfirm() {
-
+        public bool DidUserConfirm(string action) {
             return MessageBox.Show(
-                "Are you sure you wish to complete this action?",
+                String.Format("Are you sure you want to {0}?", action),
                 "Please Confirm",
                 MessageBoxButton.YesNo
             ) == MessageBoxResult.Yes;

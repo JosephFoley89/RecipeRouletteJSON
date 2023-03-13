@@ -13,5 +13,6 @@ namespace RecipeRouletteJSON.ProjectData {
         public bool SaveMultipleBackups { get; set; }
         public List<Recipe> Recipes { get; set; }
         public List<Recipe> MealPlan { get; set; }
+        public Recipe SelectedRecipe { get; set; }
     }
 }

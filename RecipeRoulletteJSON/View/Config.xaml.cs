@@ -152,5 +152,11 @@ namespace RecipeRouletteJSON.View {
             window.Show();
             this.Close();
         }
+
+        private void ConfigWindow_Closing(object sender, EventArgs e) {
+            this.Hide();
+            MainWindow window = new MainWindow();
+            window.ShowDialog();
+        }
     }
 }

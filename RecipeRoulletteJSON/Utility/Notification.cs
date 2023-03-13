@@ -3,11 +3,8 @@ using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeRouletteJSON.Utility {
     internal class Notification {
@@ -24,20 +21,20 @@ namespace RecipeRouletteJSON.Utility {
             this.client.EnableSsl = true;
 
             this.message = new MailMessage();
-            this.message.From = new MailAddress("reciperouletteauto@gmail.com");
+            this.message.From = new MailAddress("RecipeRouletteAuto@gmail.com");
             message.IsBodyHtml = true;
             message.To.Add(data.ToEmail);
         }
 
         public void SendShoppingList(List<Recipe> recipes) {
             message.Body = html.GenerateShoppingList(recipes);
-            message.Subject = "Grocery List";
+            message.Subject = "RR: Grocery List";
             client.Send(message);
         }
 
         public void SendInstructions(Recipe recipe) {
             data = load.LoadConfigFile();
-            message.Subject = String.Format("{0} Instructions", recipe.Name);
+            message.Subject = String.Format("RR: {0} Instructions", recipe.Name);
             message.Body = html.GenerateInstructions(recipe);
             client.Send(message);
         }

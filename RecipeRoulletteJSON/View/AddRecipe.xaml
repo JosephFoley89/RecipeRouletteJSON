@@ -12,7 +12,7 @@
         <Label Content="Description:" HorizontalAlignment="Left" Margin="18,36,0,0" VerticalAlignment="Top" Width="78" Foreground="White"/>
         <Label Content="Cuisine:" HorizontalAlignment="Left" Margin="17,146,0,0" VerticalAlignment="Top" Width="82" Foreground="White"/>
         <Label Content="Types:" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.369,0.442" Width="80" Foreground="White"/>
-        <Label Content="Ingredient:" HorizontalAlignment="Left" Margin="147,199,0,0" VerticalAlignment="Top" Width="77" Foreground="White"/>
+        <Label Content="Ingredient:" HorizontalAlignment="Left" Margin="157,198,0,0" VerticalAlignment="Top" Width="77" Foreground="White"/>
         <Label Content="Amount:" HorizontalAlignment="Left" Margin="17,199,0,0" VerticalAlignment="Top" Width="77" Foreground="White"/>
         <Label Content="Difficulty:" HorizontalAlignment="Left" Margin="18,232,0,0" VerticalAlignment="Top" Width="76" Foreground="White"/>
         <Label Content="Instruction:" HorizontalAlignment="Left" Margin="18,261,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.43,-0.229" Foreground="White"/>
@@ -25,15 +25,15 @@
         <TextBox Name="Type" HorizontalAlignment="Left" Margin="97,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="Type_KeyDown"/>
         <Button Name="AddTypeButton" Content="Add Type" HorizontalAlignment="Left" Margin="222,176,0,0" VerticalAlignment="Top" Width="107" Click="AddTypeButton_Click"/>
         <TextBox Name="Amount" HorizontalAlignment="Left" Margin="97,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50"/>
-        <TextBox Name="Ingredient" HorizontalAlignment="Left" Margin="209,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="Ingredient_KeyDown"/>
+        <TextBox Name="Ingredient" HorizontalAlignment="Left" Margin="224,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" KeyDown="Ingredient_KeyDown"/>
         <ComboBox Name="DifficulySelect" HorizontalAlignment="Left" Margin="97,236,0,0" VerticalAlignment="Top" Width="105" ItemsSource="{Binding}" RenderTransformOrigin="0.486,-0.756"/>
         <Button Name="AddIngredientButton" Content="Add Ingredient" HorizontalAlignment="Left" Margin="214,236,0,0" VerticalAlignment="Top" Width="115" Click="AddIngredientButton_Click" Height="20"/>
         <TextBox Name="Instruction" HorizontalAlignment="Left" Margin="18,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="99" KeyDown="Instruction_KeyDown"/>
         <Button Name="AddInstructionButton" Content="Add Instruction" HorizontalAlignment="Left" Margin="214,267,0,0" VerticalAlignment="Top" Width="115" Click="AddInstructionButton_Click"/>
         <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="17,410,0,0" VerticalAlignment="Top" Width="77" Click="CancelButton_Click"/>
         <Button x:Name="SaveRecipe" Content="Save Recipe" HorizontalAlignment="Left" Margin="112,410,0,0" VerticalAlignment="Top" Width="90" Click="SaveRecipeButton_Click"/>
-        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,0,0" Height="132" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,0,37" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472"/>
-        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,37" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472"/>
+        <ListBox ItemsSource="{Binding}"  Name="ActiveTypes" Margin="349,36,0,0" Height="132" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="TypeList_KeyDown"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveIngredients" Margin="349,197,0,37" HorizontalAlignment="Left" Width="162" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="IngredientList_KeyDown" IsManipulationEnabled="True"/>
+        <ListBox ItemsSource="{Binding}" Name="ActiveInstructions" Margin="525,36,10,37" BorderBrush="#00ABADB3" Foreground="White" Background="#FF274472" KeyDown="InstructionsList_KeyDown" IsManipulationEnabled="True"/>
     </Grid>
 </Window>

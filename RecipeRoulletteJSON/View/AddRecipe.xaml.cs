@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RecipeRouletteJSON.View {
@@ -30,6 +32,24 @@ namespace RecipeRouletteJSON.View {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             DifficulySelect.DataContext = Enum.GetValues (typeof (Difficulty));
             CuisineSelect.DataContext = Enum.GetValues (typeof (Cuisine));
+
+            if (data.SelectedRecipe != null) {
+                PopulateFields();
+            }
+        }
+
+        private void PopulateFields() {
+            measurements = data.SelectedRecipe.Measurements;
+            instructions = data.SelectedRecipe.Directions;
+            types = data.SelectedRecipe.Course;
+
+            ActiveIngredients.DataContext = AssembleListOfMeasurements();
+            ActiveInstructions.DataContext = instructions;
+            ActiveTypes.DataContext = types;
+            DifficulySelect.SelectedItem = data.SelectedRecipe.Difficulty;
+            CuisineSelect.SelectedItem = data.SelectedRecipe.Cuisine;
+            RecipeName.Text = data.SelectedRecipe.Name;
+            Description.Text = data.SelectedRecipe.Description;
         }
 
         private void UpdateListBoxes() {
@@ -77,8 +97,12 @@ namespace RecipeRouletteJSON.View {
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e) {
-            if (alert.DidUserConfirm()) {
-                CleanInputs();
+            if (alert.DidUserConfirm("cancel and revert any and all changes to default")) {
+                if (data.SelectedRecipe != null) {
+                    PopulateFields();
+                } else {
+                    CleanInputs();
+                }
                 UpdateListBoxes();
             }
         }
@@ -98,15 +122,37 @@ namespace RecipeRouletteJSON.View {
         }
 
         private void AddRecipeWindow_Closing(object sender, EventArgs e) {
-            this.Hide();
-            MainWindow window = new MainWindow();
-            window.ShowDialog();
+            if (RecipeName.Text != "") {
+                if (alert.DidUserConfirm("close this window and return to the main window")) {
+                    this.Hide();
+                    MainWindow window = new MainWindow();
+                    window.ShowDialog();
+                }
+            } else {
+                this.Hide();
+                MainWindow window = new MainWindow();
+                window.ShowDialog();
+            }
         }
 
         private void SaveRecipeButton_Click(object sender, RoutedEventArgs e) {
-            if (alert.DidUserConfirm()) {
+            int id = 0;
+
+            foreach (Recipe recipe in data.Recipes) {
+                if (recipe.Name == RecipeName.Text) {
+                    id = recipe.Id;
+                    data.Recipes.Remove(recipe);
+                    break;
+                }    
+            }
+            
+            if (id == 0) {
+                id = data.Recipes.Count + 1;
+            }
+
+            if (alert.DidUserConfirm("save the recipe")) {
                 Recipe recipe = new Recipe(
-                    data.Recipes.Count + 1,
+                    id,
                     RecipeName.Text,
                     Description.Text,
                     (Cuisine)CuisineSelect.SelectedValue,
@@ -146,6 +192,87 @@ namespace RecipeRouletteJSON.View {
                 Amount.Text = string.Empty;
                 UpdateListBoxes();
             }
+        }
+
+        private void RemoveSelectionFromList(List<string> targetList, ListBox targetListBox) {
+            if (targetListBox.SelectedItem != null) {
+                if (targetListBox != ActiveIngredients) {
+                    targetList.Remove(targetListBox.SelectedItem.ToString());
+                } else {
+                    measurements.Remove(targetListBox.SelectedItem.ToString().Split(":")[0]);
+                }
+            }
+        }
+
+        private int MoveSelectionInList(bool isMovingUp, List<string> targetList, ListBox targetListBox) {
+            int index = targetListBox.SelectedIndex;
+
+            if (isMovingUp) {
+                index -= 1;
+            } else {
+                index += 1;
+            }
+
+            if (index < 0) { index = 0; }
+            if (index >= targetListBox.Items.Count) { index = targetListBox.Items.Count - 1; }
+
+            if (targetListBox != ActiveIngredients) {
+                if (targetListBox.SelectedItem != null) {
+                    targetList.Remove(targetListBox.SelectedItem.ToString());
+                    targetList.Insert(index, targetListBox.SelectedItem.ToString());
+                }
+            }
+
+            return index;
+        }
+
+        private void InstructionsList_KeyDown(object sender, KeyEventArgs e) {
+            int index = 0;
+
+            if (e.Key == Key.Delete) {
+                RemoveSelectionFromList(instructions, ActiveInstructions);
+            } else if (e.Key == Key.Up) {
+                index = MoveSelectionInList(true, instructions, ActiveInstructions);
+            } else if (e.Key == Key.Down) {
+                index = MoveSelectionInList(false, instructions, ActiveInstructions);
+            }
+
+            UpdateListBoxes();
+            ActiveInstructions.SelectedIndex = index;
+        }
+
+        private void IngredientList_KeyDown(object sender, KeyEventArgs e) {
+            int index = 0;
+
+            if (e.Key == Key.Delete) {
+                RemoveSelectionFromList(ingredients, ActiveIngredients);
+            } else if (e.Key == Key.Up) {
+                e.Handled = true;
+                index = MoveSelectionInList(true, ingredients, ActiveIngredients);
+            } else if (e.Key == Key.Down) {
+                e.Handled = true;
+                index = MoveSelectionInList(false, ingredients, ActiveIngredients);
+            }
+
+            UpdateListBoxes();
+            ActiveIngredients.SelectedIndex = index;
+        }
+
+        private void TypeList_KeyDown(object sender, KeyEventArgs e) {
+            int index = 0;
+
+            if (e.Key == Key.Delete) {
+                RemoveSelectionFromList(types, ActiveTypes);
+            } else if (e.Key == Key.Up) {
+                e.Handled = true;
+                index = MoveSelectionInList(true, types, ActiveTypes);
+            } else if (e.Key == Key.Down) {
+                e.Handled = true;
+                index = MoveSelectionInList(false, types, ActiveTypes);
+            }
+
+            UpdateListBoxes();
+            ActiveTypes.SelectedIndex = index;
         }
     }
 }

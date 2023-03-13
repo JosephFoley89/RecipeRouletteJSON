@@ -13,10 +13,11 @@
         <TextBlock Name="Description" HorizontalAlignment="Left" Margin="213,10,0,0" TextWrapping="Wrap" Text="{Binding}" IsEnabled="False" VerticalAlignment="Top" Width="293" Height="105" FontSize="12" FontFamily="Arial" Foreground="White"/>
         <ListBox Name="IngredientList" Margin="213,120,0,0" ItemsSource="{Binding}" HorizontalAlignment="Left" Width="293" FontFamily="Arial" FontSize="12" Height="301" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#FF274472" Foreground="#FFF9F9F9"/>
         <ListBox Name="Instructions" Margin="521,10,10,0" ItemsSource="{Binding}" FontFamily="Arial" FontSize="12" Height="411" VerticalAlignment="Top" BorderBrush="#00ABADB3" Background="#FF274472" Foreground="#FFF9F9F9"/>
-        <Button Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="10,429,0,0" Click="AddButton_Click" Width="50" Height="20" VerticalAlignment="Top"/>
-        <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="140,429,0,0" Width="60" Click="DeleteButton_Click" Height="20" VerticalAlignment="Top"/>
-        <Button Name="GeneratePlanButton" Content="Generate Random Plan" HorizontalAlignment="Left" Margin="213,429,0,0" Width="147" Click="GeneratePlanButton_Click" Height="20" VerticalAlignment="Top"/>
-        <Button Content="Email Instrucitons" HorizontalAlignment="Left" Margin="365,429,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click" Width="141"/>
+        <Button Name="AddButton" Content="Add or Edit" HorizontalAlignment="Left" Margin="10,429,0,0" Click="AddButton_Click" Width="95" Height="20" VerticalAlignment="Top"/>
+        <Button Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="118,429,0,0" Width="82" Click="DeleteButton_Click" Height="20" VerticalAlignment="Top"/>
+        <Button Name="GeneratePlanButton" Content="Generate Random Plan" HorizontalAlignment="Left" Margin="600,429,0,0" Width="147" Click="GeneratePlanButton_Click" Height="20" VerticalAlignment="Top"/>
+        <Button Content="Email Instrucitons" Margin="1029,429,0,0" VerticalAlignment="Top" Height="20" Click="Button_Click" HorizontalAlignment="Left" Width="141"/>
         <Button Content="Config" HorizontalAlignment="Left" Margin="521,429,0,0" VerticalAlignment="Top" Click="ConfigButton_Click" Width="64" Height="20"/>
+        <Button Name="MealPlanButton" Content="Manual Meal Plan" HorizontalAlignment="Left" Margin="762,429,0,0" VerticalAlignment="Top" Height="20" Width="125" Click="MealPlanButton_Click"/>
     </Grid>
 </Window>

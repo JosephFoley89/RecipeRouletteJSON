@@ -20,10 +20,7 @@ namespace RecipeRouletteJSON.Utility {
             }
 
             data.MealPlan = mealPlan;
-            notification.SendShoppingList(mealPlan);
-
             update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
-
             return mealPlan;
         }
     }

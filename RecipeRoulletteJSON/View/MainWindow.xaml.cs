@@ -6,6 +6,7 @@ using RecipeRoulletteJSON.Model;
 using RecipeRoulletteJSON.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Windows;
 
@@ -32,8 +33,10 @@ namespace RecipeRoulletteJSON {
                 config.Show();
             }
 
+            data.SelectedRecipe = null;
+            update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            RecipeList.DataContext = data.Recipes;
+            RecipeList.DataContext = data.Recipes.OrderBy(x => x.Name).ToList();
         }
         
         private void RecipeList_SelectionChanged(object sender, EventArgs e) {
@@ -41,7 +44,9 @@ namespace RecipeRoulletteJSON {
                 string selection = RecipeList.SelectedItem.ToString();
                 foreach (Recipe recipe in data.Recipes) {
                     if (recipe.Name == selection) {
+                        data.SelectedRecipe = recipe;
                         selectedRecipe = recipe;
+                        update.SaveRecipes(data, data.FileLocation, data.BackUpLocation, data.SaveMultipleBackups);
 
                         SetIngredientList();
                         SetInstructions();
@@ -94,14 +99,16 @@ namespace RecipeRoulletteJSON {
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e) {
             Alert alert = new Alert();
-
-            if (alert.DidUserConfirm()) {
-                DeleteRecipe();
-                UpdateList(data.Recipes);
+            if (selectedRecipe != null) {
+                if (alert.DidUserConfirm(String.Format("delete the {0} recipe", RecipeList.SelectedItem.ToString()))) {
+                    DeleteRecipe();
+                    UpdateList(data.Recipes);
+                }
+            } else {
+                alert.DisplayError("Please select a recipe to remove.", "No Recipe Selected");
             }
         }
 
-        //TODO: Fully implement the meal plan functionality
         private void GeneratePlanButton_Click(object sender, RoutedEventArgs e) {
             List<Recipe> recipes = plan.Generate();
         }
@@ -131,6 +138,13 @@ namespace RecipeRoulletteJSON {
         private void ConfigButton_Click(object sender, RoutedEventArgs e) {
             Config config = new Config();
             config.Show();
+            this.Close();
+        }
+
+        private void MealPlanButton_Click(object sender, RoutedEventArgs e) {
+            MealPlan plan = new MealPlan();
+            plan.Show();
+            this.Close();
         }
     }
 }

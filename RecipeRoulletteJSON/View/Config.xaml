@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecipeRouletteJSON.View"
         mc:Ignorable="d"
+        Closing="ConfigWindow_Closing"
         Title="Config" Height="270" Width="362" Background="#FF274472" FontFamily="Arial">
     <Grid>
         <Label Content="Multiple Backups:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.519,0.935" Foreground="White"/>
